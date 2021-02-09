@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use DateTime;
+
 class Model
 {
     public function __construct()
@@ -72,6 +74,38 @@ class Model
     public function getReviews():array
     {
         $res = mysqli_query($this->mysqli, "SELECT * FROM reviews");
+        $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        return $rows ?? [];
+    }
+    public function getPosts():array
+    {
+        $res = mysqli_query($this->mysqli, "SELECT * FROM forum ORDER BY id DESC");
+        $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        return $rows ?? [];
+    }
+    public function addPost(array $POST):void
+    {
+        session_start();
+        $title = $POST["title"];
+        $content = $POST["content"];
+        $author = $_SESSION['user'];
+        $date = date('Y-m-d H:i:s');
+        $res = mysqli_query($this->mysqli, "INSERT INTO forum(title,content,author,date) VALUES ('$title','$content','$author','$date')");
+        header("Location: /?action=forum");
+    }
+    public function addComment(array $POST):void
+    {
+        session_start();
+        $id = $POST['id'];
+        $comment = $POST["comment"];
+        $author = $_SESSION['user'];
+        $date = date('Y-m-d H:i:s');
+        $res = mysqli_query($this->mysqli, "INSERT INTO comments(comment,author,date,articleId) VALUES ('$comment','$author','$date','$id')");
+        header("Location: /?action=forum");
+    }
+    public function getComments():array
+    {
+        $res = mysqli_query($this->mysqli, "SELECT * FROM comments ");
         $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
         return $rows ?? [];
     }

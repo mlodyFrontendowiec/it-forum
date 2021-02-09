@@ -36,7 +36,7 @@ class Controller
             $this->view->render('reviews', $this->model->getReviews());
                 break;
             case 'forum':
-            $this->view->render('forum');
+            $this->view->render('forum', ['posts'=> $this->model->getPosts(),'comments'=> $this->model->getComments()]);
                 break;
             case 'register':
             $this->view->render('register');
@@ -49,6 +49,12 @@ class Controller
                 break;
             case 'logout':
             $this->model->logoutUser();
+                break;
+            case 'addPost':
+            $this->model->addPost($this->post);
+                break;
+            case 'addComment':
+            $this->model->addComment($this->post);
                 break;
             default:
             $this->view->render('main');
