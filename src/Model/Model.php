@@ -19,9 +19,13 @@ class Model
         $password = password_hash($POST["password"], PASSWORD_DEFAULT);
         $mail = $POST['mail'];
         $userName = $this->searchUserByName($login);
-        // TODO 1 :Dodanie aby nie powtarzac nazw uzytkownika
-        $res = mysqli_query($this->mysqli, "INSERT INTO users(login,password,mail) VALUES ('$login','$password','$mail')");
-        header("Location: /");
+        var_dump($userName);
+        if ($userName === null) {
+            $res = mysqli_query($this->mysqli, "INSERT INTO users(login,password,mail) VALUES ('$login','$password','$mail')");
+            header("Location: /?action=main");
+        } else {
+            header("Location: /?action=failRegister");
+        }
     }
     public function searchUserByName(string $name)
     {
@@ -39,17 +43,14 @@ class Model
        
         $row = mysqli_fetch_assoc($res);
         if (!$row["password"]) {
-            setcookie("login", "false");
-            header("Location: /?action=failLogin");
+            header("Location: /?action=fail");
         }
 
         if (password_verify($password, $row["password"])) {
             $_SESSION['user'] = $login;
-            setcookie("login", "true");
             header("Location: /");
         } else {
-            setcookie("login", "false");
-            header("Location: /?action=failLogin");
+            header("Location: /?action=fail");
         }
     }
     public function logoutUser():void

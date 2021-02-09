@@ -22,12 +22,18 @@ class Controller
     }
     public function showPage():void
     {
-        switch ($this->get['action'] ?? 'main') {
+        switch ($this->get['action'] ?? "main") {
             case 'main':
             $this->view->render('main', $this->model->getNews());
                 break;
             case 'login':
             $this->view->render('login');
+                break;
+            case 'fail':
+            $this->view->render('login');
+                break;
+            case 'failRegister':
+            $this->view->render('register');
                 break;
             case 'articles':
             $this->view->render('articles', $this->model->getArticles());

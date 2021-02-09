@@ -7,7 +7,11 @@
 
 <div class="wrapper fadeInDown">
     <div id="formContent">
+
         <h1 class="title">Rejstracja</h1>
+        <?php if (isset($_GET['action']) && $_GET['action'] == 'failRegister'):?>
+        <p class="text-danger">Nazwa użytkownika jest zajęta</p>
+        <?php endif;?>
         <form method="POST" action="/?action=validateRegister">
             <input type="text" id="login" name="login" placeholder="login" required>
             <input type="text" id="login" name="mail" placeholder="Adres email" required>

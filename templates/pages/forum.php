@@ -46,7 +46,7 @@
 
                 <?php foreach ($data['comments'] as  $comment):  ?>
                 <?php if ($comment['articleId'] == $post['id']):?>
-                <li class="list-group-item"><?php echo "<span class='text-primary'>" . $comment['author'] ."</span>" . ": " .   $comment['comment'] ?>
+                <li class="list-group-item d-flex align-items-center justify-content-between"><?php echo "<p><span class='text-primary'>" . $comment['author'] . ": </span>" . $comment['comment'] . "</p>" . "<span class='badge bg-primary rounded-pill'>" . $comment['date']  . "</span>" ?>
                 </li>
                 <?php endif; ?>
                 <?php endforeach;?>

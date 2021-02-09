@@ -9,11 +9,15 @@
 <div class="wrapper fadeInDown">
     <div id="formContent">
         <h1 class="title">Logowanie</h1>
+        <?php if (isset($_GET['action']) && $_GET['action'] == 'fail'):?>
+        <p class="text-danger">Podaj prawidłowe dane</p>
+        <?php endif;?>
         <form method="POST" action="/?action=requestLogin">
             <input type="text" id="login" name="login" placeholder="login" required>
             <input type="password" id="password" name="password" placeholder="hasło" required>
             <input type="submit" value="Zaloguj" class="submitButton">
         </form>
+
         <a href="/?action=register">Załóż konto</a>
     </div>
 </div>
