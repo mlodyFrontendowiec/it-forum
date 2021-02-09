@@ -17,7 +17,7 @@
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="../../css/login.css">
-  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/forum.css">
   <link rel="icon" href="../assets/it.svg" sizes="any" type="image/svg+xml">
 </head>
 
@@ -42,7 +42,8 @@
         <div class="navbar-nav">
           <a class="nav-link" href="/">Strona główna</a>
           <a class="nav-link" href="/?action=articles">Artykuły</a>
-          <a class="nav-link" href="?action=reviews">Recenzje</a>
+          <a class="nav-link" href="/?action=reviews">Recenzje</a>
+          <a class="nav-link" href="/?action=forum">Forum</a>
           <?php session_start(); if (!isset($_SESSION['user'])):
           ?>
           <a class="nav-link" href="/?action=login">Logowanie</a>

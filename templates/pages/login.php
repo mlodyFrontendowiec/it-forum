@@ -18,4 +18,4 @@
     </div>
 </div>
 <?php else: header("Location: /")?>
-<?php endif?>;
+<?php endif;

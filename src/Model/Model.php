@@ -69,4 +69,10 @@ class Model
         $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
         return $rows ?? [];
     }
+    public function getReviews():array
+    {
+        $res = mysqli_query($this->mysqli, "SELECT * FROM reviews");
+        $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        return $rows ?? [];
+    }
 }

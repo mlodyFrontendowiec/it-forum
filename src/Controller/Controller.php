@@ -33,7 +33,10 @@ class Controller
             $this->view->render('articles', $this->model->getArticles());
                 break;
             case 'reviews':
-            $this->view->render('reviews');
+            $this->view->render('reviews', $this->model->getReviews());
+                break;
+            case 'forum':
+            $this->view->render('forum');
                 break;
             case 'register':
             $this->view->render('register');
